@@ -9,7 +9,7 @@ dependencies:
   - drupal:comment
   - drupal:rating
   - drupal:system
-version: '1.0.2'
+version: '1.0.3'
 config_dependencies:
   config:
     - commerce.settings
