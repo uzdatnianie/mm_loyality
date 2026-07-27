@@ -7,8 +7,8 @@ dependencies:
   - drupal:commerce
   - drupal:user
   - drupal:comment
-  - drupal:rating
   - drupal:system
+  - drupal:votingapi
 version: '1.0.3'
 config_dependencies:
   config:
