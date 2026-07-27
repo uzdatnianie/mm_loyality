@@ -45,8 +45,8 @@ services:
     tags:
       - { name: event_subscriber }
 
-  mm_loyalty.rating_insert_subscriber:
-    class: Drupal\mm_loyalty\EventSubscriber\RatingInsertSubscriber
+  mm_loyalty.voting_api_insert_subscriber:
+    class: Drupal\mm_loyalty\EventSubscriber\VotingApiInsertSubscriber
     arguments:
       - '@mm_loyalty.loyalty_manager'
       - '@logger.channel.mm_loyalty'
