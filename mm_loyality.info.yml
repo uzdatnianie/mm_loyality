@@ -2,7 +2,6 @@ name: 'MM Loyalty'
 type: module
 description: 'Loyalty points system for Drupal Commerce 3.'
 package: Commerce
-type: module
 core_version_requirement: '^11'
 dependencies:
   - drupal:commerce
@@ -10,9 +9,7 @@ dependencies:
   - drupal:comment
   - drupal:rating
   - drupal:system
-version: '1.0.0'
+version: '1.0.2'
 config_dependencies:
   config:
     - commerce.settings
-
-# Optional CAD minimal info.

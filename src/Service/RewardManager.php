@@ -6,6 +6,7 @@ namespace Drupal\mm_loyalty\Service;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\Core\StringTranslation\StringTranslationInterface;
 use Drupal\Core\User\AccountProxyInterface;
 use Drupal\mm_loyalty\Entity\RewardRedemption;
 
@@ -18,17 +19,20 @@ class RewardManager {
   private AccountProxyInterface $currentUser;
   private LoyaltyManager $loyaltyManager;
   private LoggerChannelInterface $logger;
+  private StringTranslationInterface $stringTranslation;
 
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
     AccountProxyInterface $currentUser,
     LoyaltyManager $loyaltyManager,
-    LoggerChannelInterface $logger
+    LoggerChannelInterface $logger,
+    StringTranslationInterface $stringTranslation
   ) {
     $this->entityTypeManager = $entityTypeManager;
     $this->currentUser = $currentUser;
     $this->loyaltyManager = $loyaltyManager;
     $this->logger = $logger;
+    $this->stringTranslation = $stringTranslation;
   }
 
   public function loadActiveRewards(): array {
@@ -52,7 +56,7 @@ class RewardManager {
       return FALSE;
     }
 
-    $result = $this->loyaltyManager->adjustPoints($uid, -$cost, $this->t('Reward redemption: @reward', ['@reward' => $reward->label->value]));
+    $result = $this->loyaltyManager->adjustPoints($uid, -$cost, $this->stringTranslation->translate('Reward redemption: @reward', ['@reward' => $reward->label->value]));
     if (!$result) {
       return FALSE;
     }
@@ -61,7 +65,7 @@ class RewardManager {
       'uid' => $uid,
       'reward_id' => $rewardId,
       'status' => 'new',
-      'description' => $this->t('Redeemed reward @reward', ['@reward' => $reward->label->value]),
+      'description' => $this->stringTranslation->translate('Redeemed reward @reward', ['@reward' => $reward->label->value]),
       'created' => time(),
       'changed' => time(),
     ]);

@@ -2,6 +2,7 @@
   "name": "drupal/mm_loyality",
   "description": "Loyalty points module for Drupal 11 and Commerce 3.",
   "type": "drupal-module",
+  "version": "1.0.2",
   "license": "GPL-2.0-or-later",
   "require": {
     "php": "^8.3",

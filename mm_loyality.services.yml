@@ -27,6 +27,7 @@ services:
       - '@current_user'
       - '@mm_loyalty.loyalty_manager'
       - '@logger.channel.mm_loyalty'
+      - '@string_translation'
 
   mm_loyalty.order_completed_subscriber:
     class: Drupal\mm_loyalty\EventSubscriber\OrderCompletedSubscriber
