@@ -1,0 +1,18 @@
+{
+  "name": "drupal/mm_loyality",
+  "description": "Loyalty points module for Drupal 11 and Commerce 3.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "php": "^8.3",
+    "drupal/core": "^11",
+    "drupal/commerce": "^3"
+  },
+  "authors": [
+    {
+      "name": "MM Loyalty",
+      "email": "info@example.com"
+    }
+  ],
+  "homepage": "https://github.com/uzdatnianie/mm_loyality"
+}
