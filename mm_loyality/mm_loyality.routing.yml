@@ -1,0 +1,67 @@
+mm_loyalty.settings:
+  path: '/admin/commerce/loyalty'
+  defaults:
+    _form: 'Drupal\mm_loyalty\Form\LoyaltySettingsForm'
+    _title: 'Loyalty settings'
+  requirements:
+    _permission: 'administer loyalty'
+
+mm_loyalty.admin_users:
+  path: '/admin/commerce/loyalty/users'
+  defaults:
+    _controller: 'Drupal\mm_loyalty\Controller\AdminLoyaltyController::users'
+    _title: 'Loyalty users'
+  requirements:
+    _permission: 'view all loyalty history'
+
+mm_loyalty.admin_user_history:
+  path: '/admin/commerce/loyalty/users/{user}/history'
+  defaults:
+    _controller: 'Drupal\mm_loyalty\Controller\AdminUserHistoryController::history'
+    _title: 'User loyalty history'
+  requirements:
+    _permission: 'view all loyalty history'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+mm_loyalty.rewards:
+  path: '/loyalty/rewards'
+  defaults:
+    _controller: 'Drupal\mm_loyalty\Controller\RewardController::rewards'
+    _title: 'Loyalty rewards'
+  requirements:
+    _permission: 'access content'
+
+mm_loyalty.reward_exchange:
+  path: '/loyalty/rewards/{reward}/exchange'
+  defaults:
+    _controller: 'Drupal\mm_loyalty\Controller\RewardExchangeController::exchange'
+    _title: 'Exchange reward'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      reward:
+        type: entity:reward
+
+mm_loyalty.user_loyalty:
+  path: '/user/{user}/loyalty'
+  defaults:
+    _controller: 'Drupal\mm_loyalty\Controller\UserLoyaltyController::view'
+    _title: 'My loyalty points'
+  requirements:
+    _custom_access: 'mm_loyalty.loyalty_user_access::access'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+mm_loyalty.reward_history:
+  path: '/admin/commerce/loyalty/rewards/history'
+  defaults:
+    _controller: 'Drupal\mm_loyalty\Controller\RewardHistoryController::history'
+    _title: 'Reward redemption history'
+  requirements:
+    _permission: 'administer loyalty'

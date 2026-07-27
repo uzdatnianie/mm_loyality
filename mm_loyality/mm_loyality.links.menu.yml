@@ -1,0 +1,23 @@
+mm_loyalty.admin_settings:
+  title: 'Loyalty settings'
+  description: 'Configure loyalty point settings.'
+  route_name: mm_loyalty.settings
+  parent: commerce.admin
+  menu_name: admin
+  weight: 100
+
+mm_loyalty.admin_users:
+  title: 'Loyalty users'
+  description: 'View user loyalty balances and history.'
+  route_name: mm_loyalty.admin_users
+  parent: commerce.admin
+  menu_name: admin
+  weight: 101
+
+mm_loyalty.reward_history:
+  title: 'Reward redemption history'
+  description: 'View reward exchange requests.'
+  route_name: mm_loyalty.reward_history
+  parent: commerce.admin
+  menu_name: admin
+  weight: 102

@@ -1,0 +1,5 @@
+loyalty.user_history:
+  route_name: mm_loyalty.user_loyalty
+  title: 'My loyalty points'
+  base_route: entity.user.canonical
+  weight: 100

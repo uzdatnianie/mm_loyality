@@ -1,0 +1,18 @@
+administer loyalty:
+  title: 'Administer Loyalty'
+  description: 'Manage loyalty settings, rewards, and user point balances.'
+  restrict: true
+
+view loyalty points:
+  title: 'View Loyalty Points'
+  description: 'View personal loyalty point balance and history.'
+
+manage loyalty points:
+  title: 'Manage Loyalty Points'
+  description: 'Add or remove loyalty points for users.'
+  restrict: true
+
+view all loyalty history:
+  title: 'View All Loyalty History'
+  description: 'View loyalty point transactions for all users.'
+  restrict: true

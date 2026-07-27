@@ -1,0 +1,6 @@
+amount_per_point: 10
+comment_points: 100
+rating_points: 10
+enable_purchase: true
+enable_comment: true
+enable_rating: true

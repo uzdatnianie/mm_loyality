@@ -1,0 +1,128 @@
+services:
+  mm_loyalty.points_calculator:
+    class: Drupal\mm_loyalty\Service\PointsCalculator
+    arguments: ['@config.factory']
+
+  mm_loyalty.loyalty_manager:
+    class: Drupal\mm_loyalty\Service\LoyaltyManager
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@config.factory'
+      - '@logger.channel.mm_loyalty'
+      - '@mm_loyalty.transaction_manager'
+      - '@mm_loyalty.points_calculator'
+      - '@string_translation'
+
+  mm_loyalty.transaction_manager:
+    class: Drupal\mm_loyalty\Service\TransactionManager
+    arguments:
+      - '@entity_type.manager'
+      - '@logger.channel.mm_loyalty'
+
+  mm_loyalty.reward_manager:
+    class: Drupal\mm_loyalty\Service\RewardManager
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@mm_loyalty.loyalty_manager'
+      - '@logger.channel.mm_loyalty'
+
+  mm_loyalty.order_completed_subscriber:
+    class: Drupal\mm_loyalty\EventSubscriber\OrderCompletedSubscriber
+    arguments:
+      - '@mm_loyalty.loyalty_manager'
+      - '@logger.channel.mm_loyalty'
+    tags:
+      - { name: event_subscriber }
+
+  mm_loyalty.comment_insert_subscriber:
+    class: Drupal\mm_loyalty\EventSubscriber\CommentInsertSubscriber
+    arguments:
+      - '@mm_loyalty.loyalty_manager'
+      - '@logger.channel.mm_loyalty'
+    tags:
+      - { name: event_subscriber }
+
+  mm_loyalty.rating_insert_subscriber:
+    class: Drupal\mm_loyalty\EventSubscriber\RatingInsertSubscriber
+    arguments:
+      - '@mm_loyalty.loyalty_manager'
+      - '@logger.channel.mm_loyalty'
+    tags:
+      - { name: event_subscriber }
+
+  mm_loyalty.user_loyalty_controller:
+    class: Drupal\mm_loyalty\Controller\UserLoyaltyController
+    arguments:
+      - '@mm_loyalty.loyalty_manager'
+      - '@current_user'
+      - '@entity_type.manager'
+
+  mm_loyalty.reward_controller:
+    class: Drupal\mm_loyalty\Controller\RewardController
+    arguments:
+      - '@mm_loyalty.reward_manager'
+      - '@current_user'
+      - '@entity_type.manager'
+
+  mm_loyalty.admin_controller:
+    class: Drupal\mm_loyalty\Controller\AdminLoyaltyController
+    arguments:
+      - '@entity_type.manager'
+      - '@mm_loyalty.loyalty_manager'
+      - '@current_user'
+
+  mm_loyalty.admin_user_history_controller:
+    class: Drupal\mm_loyalty\Controller\AdminUserHistoryController
+    arguments:
+      - '@entity_type.manager'
+      - '@mm_loyalty.loyalty_manager'
+      - '@form_builder'
+      - '@current_user'
+
+  mm_loyalty.reward_exchange_controller:
+    class: Drupal\mm_loyalty\Controller\RewardExchangeController
+    arguments:
+      - '@mm_loyalty.reward_manager'
+      - '@mm_loyalty.loyalty_manager'
+      - '@current_user'
+      - '@entity_type.manager'
+
+  mm_loyalty.loyalty_config_form:
+    class: Drupal\mm_loyalty\Form\LoyaltySettingsForm
+    arguments:
+      - '@config.factory'
+      - '@string_translation'
+
+  mm_loyalty.user_loyalty_page:
+    class: Drupal\mm_loyalty\Controller\UserLoyaltyController
+    arguments:
+      - '@mm_loyalty.loyalty_manager'
+      - '@current_user'
+      - '@entity_type.manager'
+
+  mm_loyalty.loyalty_user_access:
+    class: Drupal\mm_loyalty\Access\LoyaltyUserAccessCheck
+    arguments:
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@mm_loyalty.loyalty_manager'
+    tags:
+      - { name: access_check, applies_to: _custom_access }
+
+  mm_loyalty.reward_history_controller:
+    class: Drupal\mm_loyalty\Controller\RewardHistoryController
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@mm_loyalty.reward_manager'
+
+  mm_loyalty.loyalty_block:
+    class: Drupal\mm_loyalty\Plugin\Block\MyLoyaltyPointsBlock
+    arguments:
+      - '@mm_loyalty.loyalty_manager'
+      - '@current_user'
+      - '@entity_type.manager'
+    tags:
+      - { name: block }

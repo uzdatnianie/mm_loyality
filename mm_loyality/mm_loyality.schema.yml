@@ -1,0 +1,118 @@
+mm_loyalty_transactions:
+  type: table
+  primary_key:
+    - id
+  fields:
+    id:
+      type: serial
+      unsigned: true
+      not null: true
+    uid:
+      type: int
+      unsigned: true
+      not null: true
+    points:
+      type: int
+      not null: true
+    operation_type:
+      type: varchar
+      length: 64
+      not null: true
+    entity_type:
+      type: varchar
+      length: 64
+      not null: false
+    entity_id:
+      type: varchar
+      length: 128
+      not null: false
+    order_id:
+      type: int
+      unsigned: true
+      not null: false
+    created:
+      type: int
+      unsigned: true
+      not null: true
+    description:
+      type: varchar
+      length: 255
+      not null: false
+
+mm_loyalty_rewards:
+  type: table
+  primary_key:
+    - id
+  fields:
+    id:
+      type: serial
+      unsigned: true
+      not null: true
+    label:
+      type: varchar
+      length: 255
+      not null: true
+    description:
+      type: text
+      not null: false
+    cost:
+      type: int
+      not null: true
+    image_target_id:
+      type: int
+      unsigned: true
+      not null: false
+    status:
+      type: int
+      not null: true
+      default: 1
+    quantity:
+      type: int
+      not null: true
+      default: 0
+    weight:
+      type: int
+      not null: true
+      default: 0
+    created:
+      type: int
+      unsigned: true
+      not null: true
+    changed:
+      type: int
+      unsigned: true
+      not null: true
+
+mm_loyalty_reward_redemptions:
+  type: table
+  primary_key:
+    - id
+  fields:
+    id:
+      type: serial
+      unsigned: true
+      not null: true
+    uid:
+      type: int
+      unsigned: true
+      not null: true
+    reward_id:
+      type: int
+      unsigned: true
+      not null: true
+    status:
+      type: varchar
+      length: 64
+      not null: true
+    created:
+      type: int
+      unsigned: true
+      not null: true
+    changed:
+      type: int
+      unsigned: true
+      not null: true
+    description:
+      type: varchar
+      length: 255
+      not null: false
