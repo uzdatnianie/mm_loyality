@@ -9,7 +9,7 @@ dependencies:
   - drupal:comment
   - drupal:system
   - drupal:votingapi
-version: '1.0.3'
+version: '1.0.4'
 config_dependencies:
   config:
     - commerce.settings
